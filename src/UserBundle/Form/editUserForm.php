@@ -9,7 +9,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use UserBundle\Entity\User;
 
-class adminUserEditForm extends AbstractType
+class editUserForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

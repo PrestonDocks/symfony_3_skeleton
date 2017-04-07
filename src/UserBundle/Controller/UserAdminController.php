@@ -6,7 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use UserBundle\Entity\User;
-use UserBundle\Form\adminUserEditForm;
+use UserBundle\Form\editUserForm;
 use UserBundle\Form\registerForm;
 
 /**
@@ -58,7 +58,7 @@ class UserAdminController extends Controller
     {
         /** @var User $user */
         $user = $this->getDoctrine()->getManager()->getRepository(User::class)->find($id);
-        $form = $this->createForm(adminUserEditForm::class,$user);
+        $form = $this->createForm(editUserForm::class,$user);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             /** @var User $data */

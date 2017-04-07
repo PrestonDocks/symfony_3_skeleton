@@ -3,4 +3,24 @@
 {% block body %}
     <h1>Profile</h1>
 
+    <div class="form form-wide">
+        <div class="form-header">
+            <div class="form-title">Proile</div>
+            <div class="form-description">Leave password blank if you don't want to change it</div>
+        </div>
+
+        <div class="form-body">
+            {{ form_start(form) }}
+            {{ form_row(form.username) }}
+            {{ form_row(form.plainPassword) }}
+            {{ form_row(form.email) }}
+            {{ form_row(form.firstName) }}
+            {{ form_row(form.lastName) }}
+            {{ form_row(form.phoneNumber) }}
+            {{ form_row(form.mobileNumber) }}
+            <button class="btn btn-success" formnovalidate>Save <span class="fa fa-save"></span></button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+
 {% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>This view is located in HomeBundle/Resources/views/Default/index.html.twig</h1>
+
+    {% if createAdminUserLink %}
+        <h3>Create Admin User</h3>
+        <p>It looks as though no users exist in your database</p>
+        <a href="{{ path('admin_user_add_admin') }}">Click Here</a> to create user admin with password admin
+    {% endif %}
+{% endblock %}

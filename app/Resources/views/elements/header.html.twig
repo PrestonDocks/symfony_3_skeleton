@@ -1,0 +1,15 @@
+{% block header %}
+<div id="header">
+    <div id="site-name">Symfony 3 Skeleton</div>
+    <div id="login-button" class="pull-right">
+        {% if is_granted('ROLE_USER') %}
+            <a href="{{ path('security_logout') }}" class="btn btn-sm btn-primary">LOGOUT ({{ app.user.username }})</a>
+        {% else %}
+            <a href="{{ path('security_login') }}" class="btn btn-sm btn-primary">LOGIN</a>
+        {% endif %}
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('admin_user_list') }}" class="btn btn-sm btn-warning">Manage Users</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

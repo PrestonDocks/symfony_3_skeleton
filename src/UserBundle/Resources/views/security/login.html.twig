@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        #login-form-content {
+            position: relative;
+            top: 50%;
+            transform: translateY(50%); /* or try 50% */
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div id="login-form-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form form-thin">
+                        <div class="form-header">
+                            <div class="form-title">Login</div>
+                            <div class="form-description">Only authorised users are permitted to login</div>
+                        </div>
+
+                        <div class="form-body">
+                            {% if error %}
+                                <div class="alert alert-danger">
+                                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                                </div>
+                            {% endif %}
+
+                            {{ form_start(form) }}
+                            {{ form_row(form._username) }}
+                            {{ form_row(form._password) }}
+                            <button class="btn btn-success">Login <span class="fa fa-lock"></span></button>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{
+  "name": "business_tools",
+  "authors": [
+    "Simon Carr <simonjcarr@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "web/assets/vendor/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "datatables": "^1.10.13",
+    "font-awesome": "fontawesome#^4.7.0"
+  }
+}

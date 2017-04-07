@@ -35,7 +35,7 @@ class User implements UserInterface
 	private $password;
 
     /**
-     * @Assert\NotBlank(message="You must enter a password")
+     * @Assert\NotBlank(message="You must enter a password",groups={"Registration"})
      */
 	private $plainPassword;
 

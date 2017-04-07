@@ -9,7 +9,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use UserBundle\Entity\User;
 
-class registerForm extends AbstractType
+class adminUserEditForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -34,7 +34,6 @@ class registerForm extends AbstractType
     {
         $resolver->setDefaults([
             'data_class'=>User::class,
-            'validation_groups'=>['Default','Registration'],
 
         ]);
     }

@@ -3,7 +3,19 @@
     <div id="site-name">Symfony 3 Skeleton</div>
     <div id="login-button" class="pull-right">
         {% if is_granted('ROLE_USER') %}
-            <a href="{{ path('security_logout') }}" class="btn btn-sm btn-primary">LOGOUT ({{ app.user.username }})</a>
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary">{{ app.user.username }}</button>
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ path('user_profile') }}">Profile</a></li>
+
+                    <li role="separator" class="divider"></li>
+                    <li><a href="{{ path('security_logout') }}">Logout</a></li>
+                </ul>
+            </div>
         {% else %}
             <a href="{{ path('security_login') }}" class="btn btn-sm btn-primary">LOGIN</a>
             <a href="{{ path('security_register') }}" class="btn btn-sm btn-success">Register</a>

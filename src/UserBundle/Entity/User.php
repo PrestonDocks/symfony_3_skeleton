@@ -74,6 +74,12 @@ class User implements UserInterface
     private $roles = [];
 
     /**
+     * @ORM\Column(type="string",nullable=true)
+     */
+    private $passwordResetCode;
+
+
+    /**
      * Get id
      *
      * @return int
@@ -218,6 +224,22 @@ class User implements UserInterface
     public function setRoles($roles)
     {
         $this->roles = $roles;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPasswordResetCode()
+    {
+        return $this->passwordResetCode;
+    }
+
+    /**
+     * @param mixed $passwordResetCode
+     */
+    public function setPasswordResetCode($passwordResetCode)
+    {
+        $this->passwordResetCode = $passwordResetCode;
     }
 
 

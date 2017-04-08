@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use UserBundle\Entity\User;
 use UserBundle\Form\LoginForm;
 use UserBundle\Form\registerForm;
+use UserBundle\Form\resetPasswordForm;
 
 class SecurityController extends Controller
 {
@@ -85,5 +86,65 @@ class SecurityController extends Controller
         $em->persist($user);
         $em->flush();
         return $this->redirectToRoute('security_login');
+    }
+
+    /**
+     * @Route("/forgot_password",name="security_forgot_password")
+     */
+    public function forgotPasswordAction(Request $request)
+    {
+        if($request->isMethod('POST')){
+            $email = $request->get('email');
+
+            $em = $this->getDoctrine()->getManager();
+
+            /** @var User $user */
+            $user = $em->getRepository(User::class)->findOneBy(['email'=>$email]);
+            if($user) {
+                $user->setPasswordResetCode(uniqid());
+
+                $em->persist($user);
+
+                $em->flush();
+            }
+
+            return $this->redirectToRoute('security_login');
+        }
+
+        return $this->render('@User/security/forgotPassword.html.twig');
+    }
+
+    /**
+     * @Route("/reset_password/{reset_code}",name="security_reset_password")
+     */
+    public function resetAction(Request $request, $reset_code)
+    {
+        $em = $this->getDoctrine()->getManager();
+        /** @var User $user */
+        $user = $em->getRepository(User::class)->findOneBy(['passwordResetCode'=>$reset_code]);
+        if($user){
+
+        }
+    }
+
+    /**
+     * @Route("/choose_password",name="security_choose_password")
+     */
+    public function choosePasswordAction(Request $request, $resetCode = null)
+    {
+
+        $form = $this->createForm(resetPasswordForm::class,['data'=>['reset_code'=>$resetCode]]);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $data = $form->getData();
+
+        }
+
+        return $this->render('@User/security/resetPassword.html.twig',[
+            'resetCode'=>$resetCode,
+        ]);
+
     }
 }
